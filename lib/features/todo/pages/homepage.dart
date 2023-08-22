@@ -1,3 +1,5 @@
+import 'package:advanced_todo_list/common/widgets/appstyle.dart';
+import 'package:advanced_todo_list/common/widgets/reusable_text.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,12 +12,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-          child: Text(
-        'Todo with riverpod',
-        style: TextStyle(fontSize: 30),
-      )),
+          child: ReusableText(
+              text: 'Todo with riverpod',
+              style: appstyle(26, Colors.blue, FontWeight.bold))),
     );
   }
 }
