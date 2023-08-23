@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return const MaterialApp(
             debugShowCheckedModeBanner: false,
+            themeMode: ThemeMode.dark,
             home: Onboarding(),
           );
         });
