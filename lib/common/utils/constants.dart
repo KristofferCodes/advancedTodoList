@@ -16,4 +16,5 @@ class AppConst {
 
   static double width = 375.w;
   static double height = 825.h;
+  static double radius = 12.h;
 }
