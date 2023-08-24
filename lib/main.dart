@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           return const MaterialApp(
             debugShowCheckedModeBanner: false,
             themeMode: ThemeMode.dark,
-            home: Onboarding(),
+            home: HomePage(),
           );
         });
   }
