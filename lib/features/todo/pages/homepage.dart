@@ -4,6 +4,7 @@ import 'package:advanced_todo_list/common/widgets/custom_text_field.dart';
 import 'package:advanced_todo_list/common/widgets/expansion_tile.dart';
 import 'package:advanced_todo_list/common/widgets/reusable_text.dart';
 import 'package:advanced_todo_list/features/todo/controllers/xpansion_provider.dart';
+import 'package:advanced_todo_list/features/todo/pages/add.dart';
 import 'package:advanced_todo_list/features/todo/widgets/todo_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,7 +53,12 @@ class _HomePageState extends ConsumerState<HomePage>
                               borderRadius:
                                   BorderRadius.all(Radius.circular(9))),
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const AddTask()));
+                            },
                             child: const Icon(
                               Icons.add,
                               color: AppConst.kbkDark,
