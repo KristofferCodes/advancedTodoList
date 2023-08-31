@@ -27,3 +27,6 @@ List<dynamic> colors = const [
   Color(0xffffffff),
   Color(0xff5a2a7a)
 ];
+
+String titles = '';
+String descs = '';

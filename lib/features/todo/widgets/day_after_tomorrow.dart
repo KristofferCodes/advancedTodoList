@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../common/utils/constants.dart';
 import '../../../common/widgets/expansion_tile.dart';
 import '../controllers/xpansion_provider.dart';
+import '../pages/update_task.dart';
 
 class DayAfterTomorrowList extends ConsumerWidget {
   const DayAfterTomorrowList({super.key});
@@ -50,6 +51,14 @@ class DayAfterTomorrowList extends ConsumerWidget {
                 ref.read(todoStateProvider.notifier).deleteTodo(todo.id ?? 0);
               },
               editWidget: GestureDetector(
+                onTap: () {
+                  titles = todo.title.toString();
+                  descs = todo.description.toString();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UpdateTask(id: todo.id ?? 0)));
+                },
                 child: const Icon(MaterialCommunityIcons.circle_edit_outline),
               ),
               switcher: const SizedBox.shrink(),

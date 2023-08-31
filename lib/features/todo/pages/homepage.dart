@@ -1,20 +1,16 @@
 import 'package:advanced_todo_list/common/utils/constants.dart';
 import 'package:advanced_todo_list/common/widgets/appstyle.dart';
 import 'package:advanced_todo_list/common/widgets/custom_text_field.dart';
-import 'package:advanced_todo_list/common/widgets/expansion_tile.dart';
 import 'package:advanced_todo_list/common/widgets/reusable_text.dart';
-import 'package:advanced_todo_list/features/todo/controllers/todo/todo_provider.dart';
-import 'package:advanced_todo_list/features/todo/controllers/xpansion_provider.dart';
 import 'package:advanced_todo_list/features/todo/pages/add.dart';
-import 'package:advanced_todo_list/features/todo/widgets/todo_tile.dart';
 import 'package:advanced_todo_list/features/todo/widgets/tomorrow_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../common/models/task_model.dart';
 import '../../../common/widgets/height_spacer.dart';
+import '../widgets/completed_tasks.dart';
 import '../widgets/day_after_tomorrow.dart';
 import '../widgets/today_task.dart';
 
@@ -176,6 +172,7 @@ class _HomePageState extends ConsumerState<HomePage>
                     Container(
                       color: AppConst.kbkLight,
                       height: AppConst.height * 0.3,
+                      child: const CompletedTask(),
                     ),
                   ]),
                 ),

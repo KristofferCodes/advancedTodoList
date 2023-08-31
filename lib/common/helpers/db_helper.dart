@@ -7,8 +7,8 @@ class DBHelper {
   static Future<void> createTables(sql.Database database) async {
     await database.execute(
       "CREATE TABLE todos("
-      "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-      "title STRING, description STRING, date STRING, "
+      "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+      "title STRING, desc STRING, date STRING, "
       "startTime STRING, endTime STRING, "
       "remind INTEGER, repeat STRING, "
       "isCompleted INTEGER)",
@@ -68,7 +68,7 @@ class DBHelper {
 
     final data = {
       'title': title,
-      "desc": desc,
+      "description": desc,
       'isCompleted': isCompleted,
       'date': date,
       'startTime': startTime,

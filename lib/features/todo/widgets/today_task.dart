@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../common/utils/constants.dart';
 import '../controllers/todo/todo_provider.dart';
+import '../pages/update_task.dart';
 
 class TodaysTask extends ConsumerWidget {
   const TodaysTask({super.key});
@@ -29,7 +31,14 @@ class TodaysTask extends ConsumerWidget {
               ref.read(todoStateProvider.notifier).deleteTodo(data.id ?? 0);
             },
             editWidget: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                titles = data.title.toString();
+                descs = data.description.toString();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => UpdateTask(id: data.id ?? 0)));
+              },
               child: Icon(MaterialCommunityIcons.circle_edit_outline),
             ),
             title: data.title,
@@ -37,7 +46,18 @@ class TodaysTask extends ConsumerWidget {
             start: data.startTime,
             end: data.endTime,
             color: color,
-            switcher: Switch(value: isCompleted, onChanged: (value) {}),
+            switcher: Switch(
+                value: isCompleted,
+                onChanged: (value) {
+                  ref.read(todoStateProvider.notifier).markAsCompleted(
+                      data.id ?? 0,
+                      data.title.toString(),
+                      data.description.toString(),
+                      1,
+                      data.date.toString(),
+                      data.startTime.toString(),
+                      data.endTime.toString());
+                }),
           );
         });
   }
