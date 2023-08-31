@@ -5,22 +5,22 @@ import '../models/task_model.dart';
 
 class DBHelper {
   static Future<void> createTables(sql.Database database) async {
-    await database.execute("CREATE TABLE todos("
-        "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "title STRING, desc TEXT, date STRING,"
-        "startTime STRING, endTime STRING, "
-        "remind INTEGER, repeat STRING, "
-        "isCompleted INTEGER"
-        ")");
+    await database.execute(
+      "CREATE TABLE todos("
+      "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+      "title STRING, description STRING, date STRING, "
+      "startTime STRING, endTime STRING, "
+      "remind INTEGER, repeat STRING, "
+      "isCompleted INTEGER)",
+    );
 
     await database.execute("CREATE TABLE user("
-        "id INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT 0"
-        "isVerified INTEGER"
-        ")");
+        "id INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT 0, "
+        "isVerified INTEGER)");
   }
 
   static Future<sql.Database> db() async {
-    return sql.openDatabase('krisDb', version: 1,
+    return sql.openDatabase('krisDb', version: 5,
         onCreate: (sql.Database database, int version) async {
       await createTables(database);
     });
@@ -59,7 +59,7 @@ class DBHelper {
 
   static Future<List<Map<String, dynamic>>> getItem(int id) async {
     final db = await DBHelper.db();
-    return db.query('todos', orderBy: 'id = ?', whereArgs: [id], limit: 1);
+    return db.query('todos', where: 'id = ?', whereArgs: [id], limit: 1);
   }
 
   static Future<int> updateItem(int id, String title, String desc,

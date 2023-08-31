@@ -18,3 +18,12 @@ class AppConst {
   static double height = 825.h;
   static double radius = 12.h;
 }
+
+List<dynamic> colors = const [
+  Color(0xffd80000),
+  Color(0xff027eb5),
+  Color(0xff20a31e),
+  Color(0xfff9f900),
+  Color(0xffffffff),
+  Color(0xff5a2a7a)
+];

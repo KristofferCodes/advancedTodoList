@@ -3,6 +3,7 @@ import 'package:advanced_todo_list/common/widgets/appstyle.dart';
 import 'package:advanced_todo_list/common/widgets/custom_text_field.dart';
 import 'package:advanced_todo_list/common/widgets/expansion_tile.dart';
 import 'package:advanced_todo_list/common/widgets/reusable_text.dart';
+import 'package:advanced_todo_list/features/todo/controllers/todo/todo_provider.dart';
 import 'package:advanced_todo_list/features/todo/controllers/xpansion_provider.dart';
 import 'package:advanced_todo_list/features/todo/pages/add.dart';
 import 'package:advanced_todo_list/features/todo/widgets/todo_tile.dart';
@@ -11,7 +12,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../common/models/task_model.dart';
 import '../../../common/widgets/height_spacer.dart';
+import '../widgets/today_task.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -165,19 +168,9 @@ class _HomePageState extends ConsumerState<HomePage>
                       BorderRadius.all(Radius.circular(AppConst.radius)),
                   child: TabBarView(controller: tabController, children: [
                     Container(
-                      color: AppConst.kbkLight,
-                      height: AppConst.height * 0.3,
-                      child: ListView(
-                        children: [
-                          TodoTile(
-                            start: "03:00",
-                            end: "05:00",
-                            switcher:
-                                Switch(value: true, onChanged: (value) {}),
-                          )
-                        ],
-                      ),
-                    ),
+                        color: AppConst.kbkLight,
+                        height: AppConst.height * 0.3,
+                        child: const TodaysTask()),
                     Container(
                       color: AppConst.kbkLight,
                       height: AppConst.height * 0.3,
@@ -186,30 +179,6 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
               ),
               const HeightSpacer(height: 20),
-              xpansionTile(
-                  text: "Tomorrow's task",
-                  text2: "Tomorrow's task as shown here",
-                  onExpansionChanged: (bool expanded) {
-                    ref
-                        .read(xpansionStateProvider.notifier)
-                        .setStart(!expanded);
-                  },
-                  trailing: ref.watch(xpansionStateProvider)
-                      ? const Icon(
-                          AntDesign.circledown,
-                          color: AppConst.kLight,
-                        )
-                      : const Icon(
-                          AntDesign.closecircleo,
-                          color: AppConst.kBlueLight,
-                        ),
-                  children: [
-                    TodoTile(
-                      start: "03:00",
-                      end: "05:00",
-                      switcher: Switch(value: true, onChanged: (value) {}),
-                    )
-                  ]),
               const HeightSpacer(height: 20),
               xpansionTile(
                   text: DateTime.now()
