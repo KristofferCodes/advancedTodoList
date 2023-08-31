@@ -8,19 +8,23 @@ import '../../../common/utils/constants.dart';
 import '../../../common/widgets/expansion_tile.dart';
 import '../controllers/xpansion_provider.dart';
 
-class TomorrowList extends ConsumerWidget {
-  const TomorrowList({super.key});
+class DayAfterTomorrowList extends ConsumerWidget {
+  const DayAfterTomorrowList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final todos = ref.watch(todoStateProvider);
     var color = ref.read(todoStateProvider.notifier).getRandomColor();
-    String tomorrow = ref.read(todoStateProvider.notifier).getTomorrow();
+    String dayAfterTomorrow =
+        ref.read(todoStateProvider.notifier).dayAfterTomorrow();
 
     var tomorrowTasks =
-        todos.where((element) => element.date!.contains(tomorrow));
+        todos.where((element) => element.date!.contains(dayAfterTomorrow));
     return xpansionTile(
-        text: "Tomorrow's task",
+        text: DateTime.now()
+            .add(const Duration(days: 2))
+            .toString()
+            .substring(5, 10),
         text2: "Tomorrow's task as shown here",
         onExpansionChanged: (bool expanded) {
           ref.read(xpansionStateProvider.notifier).setStart(!expanded);

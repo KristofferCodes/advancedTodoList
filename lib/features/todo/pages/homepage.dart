@@ -7,6 +7,7 @@ import 'package:advanced_todo_list/features/todo/controllers/todo/todo_provider.
 import 'package:advanced_todo_list/features/todo/controllers/xpansion_provider.dart';
 import 'package:advanced_todo_list/features/todo/pages/add.dart';
 import 'package:advanced_todo_list/features/todo/widgets/todo_tile.dart';
+import 'package:advanced_todo_list/features/todo/widgets/tomorrow_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -14,6 +15,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../common/models/task_model.dart';
 import '../../../common/widgets/height_spacer.dart';
+import '../widgets/day_after_tomorrow.dart';
 import '../widgets/today_task.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -179,28 +181,9 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
               ),
               const HeightSpacer(height: 20),
+              const TomorrowList(),
               const HeightSpacer(height: 20),
-              xpansionTile(
-                  text: DateTime.now()
-                      .add(const Duration(days: 2))
-                      .toString()
-                      .substring(5, 10),
-                  text2: "Tomorrow's task as shown here",
-                  onExpansionChanged: (bool expanded) {
-                    ref
-                        .read(xpansionState0Provider.notifier)
-                        .setStart(!expanded);
-                  },
-                  trailing: ref.watch(xpansionState0Provider)
-                      ? const Icon(
-                          AntDesign.circledown,
-                          color: AppConst.kLight,
-                        )
-                      : const Icon(
-                          AntDesign.closecircleo,
-                          color: AppConst.kBlueLight,
-                        ),
-                  children: []),
+              const DayAfterTomorrowList()
             ]),
           ),
         ));
